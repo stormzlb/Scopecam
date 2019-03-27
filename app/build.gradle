@@ -1,0 +1,55 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.1"
+    defaultConfig {
+        applicationId "com.obdstar.usbcamera"
+        minSdkVersion 22
+        targetSdkVersion 26
+        versionCode 3
+        versionName "2.0"
+        buildConfigField "boolean", "LOG_DEBUG", "true"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            moduleName "UsbCam_jni"//定义自己Ndklibrary的名字
+            ldLibs "log"        //添加log库
+            // 设置支持的SO库架构
+            abiFilters 'armeabi'
+        }
+    }
+
+    sourceSets {
+        main {
+            jni.srcDir "src/main/jni" //禁止gradle 自动编译，使用已经编译好的So库
+            jniLibs.srcDirs = ['src/main/jniLibs']
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:26.+'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
+    compile 'com.tencent.bugly:crashreport:latest.release'
+    //其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如2.1.9
+    compile 'com.tencent.bugly:nativecrashreport:latest.release'
+    //其中latest.release指代最新Bugly NDK版本号，也可以指定明确的版本号，例如3.0
+    compile 'com.android.support:recyclerview-v7:26.0.0-alpha1'
+    compile 'com.balysv:material-ripple:1.0.2'
+    compile 'com.github.bumptech.glide:glide:3.6.1'
+    compile project(':library')
+    compile 'com.android.support:cardview-v7:27.0.0'
+}

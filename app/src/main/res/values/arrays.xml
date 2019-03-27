@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="spin_Resolution">
+        <item>640*480</item>
+        <item>352*288</item>
+        <item>320*240</item>
+        <item>160*120</item>
+    </string-array>
+</resources>

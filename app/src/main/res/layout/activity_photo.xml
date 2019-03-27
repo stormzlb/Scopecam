@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/file_manager_bg"
+    android:orientation="vertical">
+
+    <include layout="@layout/back_title" />
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <GridView
+            android:id="@+id/gv_photo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:numColumns="5" />
+
+        <TextView
+            android:id="@+id/tv_query_none"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:drawableTop="@drawable/ic_empty"
+            android:text="暂时没有数据!"
+            android:textColor="@color/gray_black"
+            android:textSize="@dimen/text_large" />
+
+    </FrameLayout>
+
+
+</LinearLayout>
